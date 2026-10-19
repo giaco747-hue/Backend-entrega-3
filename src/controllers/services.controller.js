@@ -44,7 +44,7 @@ export const createService = async (req, res) => {
             });
         }
         
-        const createdService = await serviceManager.addService(req.body);
+        const createdService = await serviceManager.createService(req.body);
         res.status(201).json(createdService);
     } catch (error) {
         res.status(500).json({ error: 'Error al crear el servicio' });

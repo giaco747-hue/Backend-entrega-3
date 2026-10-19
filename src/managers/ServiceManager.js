@@ -28,11 +28,10 @@ export default class ServiceManager {
     async getServiceById(id) {
         const services = await this.#readData();
         const service = services.find(s => s.id === id);
-        return service || null; // Cambio: Devolver null si no existe
+        return service || null; 
     }
 
-    async addService(serviceData) {
-        // La validación de campos vacíos la haremos en el Router para responder con error 400
+    async createService(serviceData) {
         const services = await this.#readData();
         const newId = services.length > 0 ? Math.max(...services.map(s => s.id)) + 1 : 1;
 
@@ -46,7 +45,7 @@ export default class ServiceManager {
         const services = await this.#readData();
         const index = services.findIndex(s => s.id === id);
 
-        if (index === -1) return null; // Cambio: Devolver null si no existe
+        if (index === -1) return null; 
 
         if (updatedData.id) delete updatedData.id;
 
@@ -59,7 +58,7 @@ export default class ServiceManager {
         const services = await this.#readData();
         const index = services.findIndex(s => s.id === id);
 
-        if (index === -1) return null; // Cambio: Devolver null si no existe
+        if (index === -1) return null; 
 
         const deletedService = services.splice(index, 1)[0];
         await this.#writeData(services);
